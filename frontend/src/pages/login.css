@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.left-panel {
+  background: black;
+  color: white;
+  padding: 60px;
+}
+
+.right-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-card {
+  width: 350px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 12px 12px 35px;
+  box-sizing: border-box;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.status {
+  color: green;
+  margin-bottom: 15px;
+}
+
+.toggle-btn {
+  border: none;
+  background: none;
+  color: blue;
+  cursor: pointer;
+}
+
+@media(max-width:768px){
+  .page{
+    grid-template-columns:1fr;
+  }
+
+  .left-panel{
+    display:none;
+  }
+}
