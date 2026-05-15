@@ -62,10 +62,11 @@ router.post("/login", async (req, res) => {
 
     const safeUser = { _id: user._id, name: user.name, email: user.email, createdAt: user.createdAt };
     return res.status(200).json({ success: true, message: "Login successful.", user: safeUser });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ success: false, message: "Server error." });
-  }
+  }catch (error) {
+  console.log(error);
+
+  setStatus(error.message);
+}
 });
 
 module.exports = router;
