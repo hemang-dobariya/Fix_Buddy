@@ -10,8 +10,8 @@ const hashPassword = (password) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { name, role, email, password } = req.body;
+    if (!name || !role || !email || !password) {
       return res.status(400).json({ success: false, message: "Name, email, and password are required." });
     }
 
@@ -25,13 +25,14 @@ router.post("/register", async (req, res) => {
 
     const newUser = {
       name,
+      role,
       email: email.toLowerCase(),
       password: hashPassword(password),
       createdAt: new Date(),
     };
 
     const result = await users.insertOne(newUser);
-    const user = { _id: result.insertedId, name, email: newUser.email, createdAt: newUser.createdAt };
+    const user = { _id: result.insertedId, name, role, email: newUser.email, createdAt: newUser.createdAt };
 
     return res.status(201).json({ success: true, message: "User registered successfully.", user });
   } catch (error) {
@@ -60,13 +61,15 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ success: false, message: "Invalid credentials." });
     }
 
-    const safeUser = { _id: user._id, name: user.name, email: user.email, createdAt: user.createdAt };
+    const safeUser = { _id: user._id, name: user.name, role: user.role, email: user.email, createdAt: user.createdAt };
     return res.status(200).json({ success: true, message: "Login successful.", user: safeUser });
-  }catch (error) {
-  console.log(error);
-
-  setStatus(error.message);
-}
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: "Server error." });
+  }
 });
+
+
+
 
 module.exports = router;

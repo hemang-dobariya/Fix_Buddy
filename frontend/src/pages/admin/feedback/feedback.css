@@ -1,0 +1,21 @@
+.emp-th-center {
+  text-align: center;
+}
+
+.emp-table th:nth-child(4),
+.emp-table td:nth-child(4) {
+  max-width: 200px;
+  width: 200px;
+  min-width: 0;
+}
+
+.feedback-message {
+  display: block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #475569;
+  font-size: 13px;
+  cursor: default;
+}

@@ -70,6 +70,7 @@ export default function AuthPage() {
 
   const [regForm, setRegForm] = useState({
     name: "",
+    role: "user",
     email: "",
     password: ""
   });
@@ -100,11 +101,29 @@ export default function AuthPage() {
 
       if (res.ok) {
         localStorage.setItem("user", JSON.stringify(data.user));
+        
+        // Store email for employees to fetch their department
+        if (data.user.role === 'employee') {
+          localStorage.setItem("employeeEmail", data.user.email);
+        }
+        
+        window.dispatchEvent(new Event("authChange"));
 
         setStatus("Login successful");
 
+        console.log(data.user.role,"<------------");
+        
+
         setTimeout(() => {
-          navigate("/");
+          if (data.user.role === 'admin') {
+            navigate('/admin/dashboard')
+          }
+          else if (data.user.role === 'employee') {
+            navigate('/employee/dashboard')
+          }
+          else{
+            navigate("/");
+          }
         }, 1000);
       } else {
         setStatus(data.message);

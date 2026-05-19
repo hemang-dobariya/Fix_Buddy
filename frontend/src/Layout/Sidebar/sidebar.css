@@ -1,0 +1,251 @@
+/* ─── Sidebar Layout ─── */
+.sidebar-wrap {
+  width: 220px;
+  min-height: 100vh;
+  background: #fff;
+  border-right: 1px solid #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.22s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar-wrap.collapsed {
+  width: 60px;
+}
+
+/* ─── Brand ─── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 14px 16px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: #1A1A1A;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  /* slide out on collapse */
+  opacity: 1;
+  transition: opacity 0.15s ease, width 0.22s ease;
+}
+
+.sidebar-wrap.collapsed .brand-text {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1A1A;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.brand-sub {
+  font-size: 11px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.collapse-btn {
+  background: none;
+  border: 1px solid #EAEAEA;
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #888;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  padding: 0;
+}
+
+.collapse-btn:hover {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+/* ─── Nav ─── */
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+/* group label: hide via max-height so layout doesn't jump */
+.nav-group-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #BBBBBB;
+  padding: 4px 8px 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 24px;
+  opacity: 1;
+  transition: max-height 0.22s ease, opacity 0.15s ease;
+}
+
+.sidebar-wrap.collapsed .nav-group-label {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #666;
+  font-size: 13.5px;
+  font-weight: 450;
+  text-decoration: none;
+  transition: background 0.13s, color 0.13s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-item i {
+  font-size: 18px;
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+}
+
+/* nav label: fade + shrink */
+.nav-label {
+  opacity: 1;
+  transition: opacity 0.15s ease;
+  overflow: hidden;
+}
+
+.sidebar-wrap.collapsed .nav-label {
+  opacity: 0;
+  width: 0;
+}
+
+.nav-item:hover {
+  background: #F5F5F5;
+  color: #1A1A1A;
+}
+
+.nav-item.active {
+  background: #1A1A1A;
+  color: #fff;
+  font-weight: 500;
+}
+
+.sidebar-wrap.collapsed .nav-item {
+  justify-content: center;
+  padding: 9px;
+}
+
+/* ─── Footer ─── */
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid #F0F0F0;
+  overflow: hidden;
+}
+
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #1A1A1A;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.15s ease, width 0.22s ease;
+}
+
+.sidebar-wrap.collapsed .admin-info {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.admin-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1A1A1A;
+  white-space: nowrap;
+}
+
+.admin-role {
+  font-size: 11px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #AAAAAA;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: color 0.13s, background 0.13s;
+  flex-shrink: 0;
+}
+
+.logout-btn:hover {
+  color: #e53e3e;
+  background: #FFF0F0;
+}

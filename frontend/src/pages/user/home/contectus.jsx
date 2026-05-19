@@ -19,7 +19,6 @@ const ContactUs = () => {
     e.preventDefault();
 
     try {
-    debugger;
       const response = await fetch("http://localhost:5000/api/feedback", {
         method: "POST",
         headers: {

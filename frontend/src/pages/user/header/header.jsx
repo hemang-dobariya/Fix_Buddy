@@ -7,18 +7,28 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const checkAuth = () => {
+      const user = localStorage.getItem("user");
+      setIsLogin(!!user);
+    };
 
-    setIsLogin(!!user);
+    checkAuth();
+
+    window.addEventListener("storage", checkAuth);
+    window.addEventListener("authChange", checkAuth);
+
+    return () => {
+      window.removeEventListener("storage", checkAuth);
+      window.removeEventListener("authChange", checkAuth);
+    };
   }, []);
 
   const handleAuth = () => {
     if (isLogin) {
       // LOGOUT
       localStorage.removeItem("user");
-
       setIsLogin(false);
-
+      window.dispatchEvent(new Event("authChange"));
       navigate("/login");
     } else {
       // LOGIN PAGE
